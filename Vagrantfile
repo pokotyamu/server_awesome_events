@@ -26,7 +26,8 @@ Vagrant.configure(2) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.149"
+  config.ssh.forward_agent = true
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -68,10 +69,26 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-  config.ssh.forward_agent = true
+
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["./cookbooks"]
+    chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     config.omnibus.chef_version = :latest
+
+    chef.add_recipe 'ohai'
+    chef.add_recipe 'build-essential'
     chef.add_recipe 'git'
+    chef.add_recipe 'memcached'
+    chef.add_recipe 'nodejs'
+    chef.add_recipe 'database::sqlite'
+    chef.add_recipe 'xml'
+    chef.add_recipe 'nginx'
+    chef.add_recipe 'rails_book_cookbook::ops_user'
+    chef.add_recipe 'rails_book_cookbook::keys'
+
+    chef.json ={
+      'ohai' => {
+        'plugin_path' => 'ubuntu'
+      }
+    }
   end
 end
