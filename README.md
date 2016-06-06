@@ -1,0 +1,2 @@
+# server_awesome_events
+aersome_eventsのサーバ側
