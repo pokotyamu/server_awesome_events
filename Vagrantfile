@@ -73,6 +73,7 @@ Vagrant.configure(2) do |config|
     chef.cookbooks_path = ["./cookbooks"]
     config.omnibus.chef_version = :latest
 
+    chef.add_recipe 'ohai'
     chef.add_recipe 'build-essential'
     chef.add_recipe 'git'
     chef.add_recipe 'memcached'
