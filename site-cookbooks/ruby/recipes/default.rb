@@ -42,14 +42,14 @@ end
 
 bash "insert_line_rbenvpath" do
   environment "HOME" => '/home/ops'
-    code <<-EOS
+  code <<-EOS
     echo 'export PATH="/home/ops/.rbenv/bin:$PATH"' >> ~/.bashrc
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc
     chmod 777 ~/.bashrc
     source ~/.bashrc
   EOS
+  not_if "grep 'export PATH=\"/home/ops/.rbenv/bin:$PATH\"' ~/.bashrc"
 end
-
 
 bash "install ruby" do
   user "ops"
