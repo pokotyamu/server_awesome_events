@@ -61,14 +61,3 @@ bash "install ruby" do
     /home/ops/.rbenv/bin/rbenv global 2.3.1
   EOS
 end
-
-bash 'install rails' do
-  user 'ops'
-  group 'ops'
-  environment 'HOME' => '/home/ops'
-    code <<-EOC
-    export PATH="/home/ops/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-    gem install --no-document rails
-  EOC
-end
