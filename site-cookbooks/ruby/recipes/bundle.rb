@@ -6,4 +6,5 @@ bash "install bundler" do
     /home/ops/.rbenv/shims/gem install bundler
     /home/ops/.rbenv/bin/rbenv rehash
   EOS
+  not_if 'bundler -v'
 end
