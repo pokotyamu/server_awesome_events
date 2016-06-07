@@ -74,7 +74,6 @@ Vagrant.configure(2) do |config|
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     config.omnibus.chef_version = :latest
 
-    chef.add_recipe 'ohai'
     chef.add_recipe 'build-essential'
     chef.add_recipe 'git'
     chef.add_recipe 'memcached'
@@ -85,10 +84,5 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'rails_book_cookbook::ops_user'
     chef.add_recipe 'rails_book_cookbook::keys'
     chef.add_recipe 'ruby'
-    chef.json ={
-      'ohai' => {
-        'plugin_path' => 'ubuntu'
-      }
-    }
   end
 end
