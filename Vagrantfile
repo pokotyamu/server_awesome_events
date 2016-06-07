@@ -44,13 +44,13 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+    vb.memory = "1024"
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -74,7 +74,6 @@ Vagrant.configure(2) do |config|
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     config.omnibus.chef_version = :latest
 
-    chef.add_recipe 'ohai'
     chef.add_recipe 'build-essential'
     chef.add_recipe 'git'
     chef.add_recipe 'memcached'
@@ -82,13 +81,11 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'database::sqlite'
     chef.add_recipe 'xml'
     chef.add_recipe 'nginx'
+    chef.add_recipe 'rails_book_cookbook::iptables'
     chef.add_recipe 'rails_book_cookbook::ops_user'
     chef.add_recipe 'rails_book_cookbook::keys'
-
-    chef.json ={
-      'ohai' => {
-        'plugin_path' => 'ubuntu'
-      }
-    }
+    chef.add_recipe 'rails_book_cookbook::nginx_setting'
+    chef.add_recipe 'ruby'
+    chef.add_recipe 'ruby::bundle'
   end
 end
