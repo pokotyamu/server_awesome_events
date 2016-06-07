@@ -84,6 +84,7 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'rails_book_cookbook::iptables'
     chef.add_recipe 'rails_book_cookbook::ops_user'
     chef.add_recipe 'rails_book_cookbook::keys'
+    chef.add_recipe 'rails_book_cookbook::nginx_setting'
     chef.add_recipe 'ruby'
     chef.add_recipe 'ruby::bundle'
   end
