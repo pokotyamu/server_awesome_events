@@ -22,7 +22,6 @@ git "/home/ops/.rbenv" do
   action :sync
   user "ops"
   group "ops"
-  not_if "git -v"
 end
 
 # directory コマンドでディレクトリ作成
@@ -62,5 +61,5 @@ bash "install ruby" do
     /home/ops/.rbenv/bin/rbenv rehash
     /home/ops/.rbenv/bin/rbenv global 2.3.1
   EOS
-  not_if "find /home/ops/.rbenv/versions/2.3.1"
+  not_if { File.exists?("/home/ops/.rbenv/versions/2.3.1") }
 end

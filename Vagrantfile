@@ -84,6 +84,6 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'rails_book_cookbook::ops_user'
     chef.add_recipe 'rails_book_cookbook::keys'
     chef.add_recipe 'ruby'
-#    chef.add_recipe 'ruby::bundle'
+    chef.add_recipe 'ruby::bundle'
   end
 end
